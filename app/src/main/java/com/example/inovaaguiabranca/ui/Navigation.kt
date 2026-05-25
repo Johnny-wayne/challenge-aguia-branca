@@ -37,7 +37,17 @@ fun AppNavigation(authViewModel: AuthViewModel, innovationViewModel: InnovationV
         composable("leader") {
             LeaderScreen(authViewModel, innovationViewModel, onLogout = {
                 navController.navigate("login") { popUpTo(0) }
+            }, onNavigateToProject = { projectId ->
+                navController.navigate("project_detail/$projectId")
             })
+        }
+        composable("project_detail/{projectId}") { backStackEntry ->
+            val projectId = backStackEntry.arguments?.getString("projectId") ?: ""
+            ProjectDetailScreen(
+                projectId = projectId,
+                innovationViewModel = innovationViewModel,
+                onBack = { navController.popBackStack() }
+            )
         }
     }
 }

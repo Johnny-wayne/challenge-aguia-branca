@@ -8,6 +8,8 @@ val BackgroundGray = Color(0xFFF8F9FA)
 val SurfaceWhite = Color(0xFFFFFFFF)
 val TextPrimary = Color(0xFF1E1E1E)
 val TextSecondary = Color(0xFF757575)
+val NavyBlue = Color(0xFF0A2540)
+val DarkBackground = Color(0xFF112B46)
 
 // Status Colors
 val StatusApprovedText = Color(0xFF00C853)
