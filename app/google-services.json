@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "991462881454",
+    "project_id": "challengeaguiabranca",
+    "storage_bucket": "challengeaguiabranca.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:991462881454:android:dc53ab7ccebc280f4d153f",
+        "android_client_info": {
+          "package_name": "com.example.inovaaguiabranca"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAb7VCNgVlxIKIXqfQrO-m4hqOBzVgjAMM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
