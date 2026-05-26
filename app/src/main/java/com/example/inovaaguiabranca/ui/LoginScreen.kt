@@ -1,12 +1,15 @@
 package com.example.inovaaguiabranca.ui
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import com.example.inovaaguiabranca.R
 import com.example.inovaaguiabranca.viewmodel.AuthViewModel
 
 @Composable
@@ -32,6 +35,12 @@ fun LoginScreen(authViewModel: AuthViewModel, onLoginSuccess: (String) -> Unit) 
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Image(
+            painter = painterResource(id = R.drawable.logo_aguia_branca),
+            contentDescription = "Logo Águia Branca",
+            modifier = Modifier.height(100.dp)
+        )
+        Spacer(modifier = Modifier.height(16.dp))
         Text(text = "Águia Branca Inovação", style = MaterialTheme.typography.headlineMedium)
         Spacer(modifier = Modifier.height(32.dp))
 

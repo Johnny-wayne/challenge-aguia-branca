@@ -11,6 +11,7 @@ import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material.icons.filled.LocalShipping
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import kotlinx.coroutines.launch
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,12 +30,16 @@ fun OperatorScreen(authViewModel: AuthViewModel, innovationViewModel: Innovation
     val currentUser by authViewModel.currentUser.collectAsState()
     val myIdeas = ideas.filter { it.authorId == currentUser?.id }
 
+    val snackbarHostState = remember { SnackbarHostState() }
+    val coroutineScope = rememberCoroutineScope()
+
     var showForm by remember { mutableStateOf(false) }
     var title by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
 
     Scaffold(
         containerColor = BackgroundGray,
+        snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             AppHeader(
                 userName = currentUser?.name ?: "Operador",
@@ -128,8 +133,11 @@ fun OperatorScreen(authViewModel: AuthViewModel, innovationViewModel: Innovation
                             Spacer(modifier = Modifier.height(16.dp))
                             Button(
                                 onClick = {
-                                    if (title.isNotBlank()) {
-                                        innovationViewModel.addIdea(title, description, currentUser?.id ?: "")
+                                    if (title.isNotBlank() && description.isNotBlank()) {
+                                        innovationViewModel.addIdea(title, description, currentUser?.id ?: "unknown")
+                                        coroutineScope.launch {
+                                            snackbarHostState.showSnackbar("Ideia enviada com sucesso!")
+                                        }
                                         title = ""
                                         description = ""
                                         showForm = false

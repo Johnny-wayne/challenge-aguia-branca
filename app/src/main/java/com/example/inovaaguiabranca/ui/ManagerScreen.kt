@@ -11,6 +11,7 @@ import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import kotlinx.coroutines.launch
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,9 +35,13 @@ fun ManagerScreen(authViewModel: AuthViewModel, innovationViewModel: InnovationV
     val executionIdeas = ideas.filter { it.status == "em execução" || it.status == "execução" }
 
     var ideaToApprove by remember { mutableStateOf<com.example.inovaaguiabranca.model.Idea?>(null) }
+    
+    val snackbarHostState = remember { SnackbarHostState() }
+    val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
         containerColor = BackgroundGray,
+        snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             AppHeader(
                 userName = currentUser?.name ?: "Gestor",
@@ -141,6 +146,9 @@ fun ManagerScreen(authViewModel: AuthViewModel, innovationViewModel: InnovationV
                                     roiPercentage = roi,
                                     costReduction = costRed
                                 )
+                                coroutineScope.launch {
+                                    snackbarHostState.showSnackbar("Projeto convertido com sucesso!")
+                                }
                             }
                             ideaToApprove = null
                         },

@@ -7,7 +7,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -70,9 +69,6 @@ fun AppHeader(
             }
             
             Row {
-                IconButton(onClick = { /* TODO: Search */ }) {
-                    Icon(Icons.Default.Search, contentDescription = "Buscar", tint = Color.LightGray)
-                }
                 IconButton(onClick = onLogout) {
                     Icon(Icons.Default.ExitToApp, contentDescription = "Sair", tint = Color.LightGray)
                 }
